@@ -25,10 +25,21 @@ MiroFish lets you upload documents, build a knowledge graph, spin up thousands o
 ```bash
 git clone https://github.com/666ghj/MiroFish.git
 cd MiroFish
-cp .env.example .env   # fill in your LLM_API_KEY and ZEP_API_KEY
+cp .env.example .env
 npm run setup:all
 npm run dev            # starts backend at http://localhost:5001
 ```
+
+**Using Claude as MiroFish's LLM** — MiroFish accepts any OpenAI-compatible API. To use Claude, set these in your MiroFish `.env`:
+
+```env
+LLM_API_KEY=sk-ant-api03-...          # your Anthropic API key
+LLM_BASE_URL=https://api.anthropic.com/v1
+LLM_MODEL_NAME=claude-sonnet-4-6
+ZEP_API_KEY=...                        # still required for the knowledge graph
+```
+
+MiroFish's LLM client passes `base_url` directly to the OpenAI SDK, so Claude handles all internal AI work — ontology extraction, agent profiling, simulation decisions, report generation — with no code changes.
 
 ---
 
